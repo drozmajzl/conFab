@@ -1,7 +1,7 @@
 import {React, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-function TrackList({ tracks, setlists, setSetlists, fetchSetlists, addTrack, setAddTrack }){
+function TrackList({ tracks, setlists, setSetlists, fetchSetlists, addTrack, setAddTrack, showSideBar }){
     const [showModal, setShowModal] = useState(false)
     const [currentTrack, setCurrentTrack]=useState("")
 
@@ -50,9 +50,10 @@ function TrackList({ tracks, setlists, setSetlists, fetchSetlists, addTrack, set
 
         const setListButtons = setlists.map((s)=> <button key={s.id} onClick={()=>addToSetlist(s.id)}>{s.name}</button>)
 
-        const modal = <div className="modal_container">
+        const modal = <div style={{marginLeft: (showSideBar ? "125px" : "0px")}} className="modal_container">
         <div className="modal">
-            <h3>Add {currentTrack.name} to:</h3>
+            {setListButtons.length === 0 ? null : <h3>Add "{currentTrack.name}" to:</h3>}
+            {setListButtons.length === 0 ? "No Setlists Yet! Create a new Setlist to add songs." : null}
             {setListButtons}
             <br></br>
             <button onClick={()=>setShowModal(!showModal)}>Close</button>

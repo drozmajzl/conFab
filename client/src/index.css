@@ -15,16 +15,41 @@ code {
 .album_cover{
   float:left;
   width: 21%;
-  padding: 10px;
-  margin:20px;
+  /* margin:20px; */
+  margin-left:8vw;
+  margin-bottom: 3vw;
   height: 250px;
-  outline: 5px solid black;
-  background-color: antiquewhite;
+  /* outline: 5px solid black; */
+  /* background-color: antiquewhite; */
   border-radius: 15 px;
+  transition: 1s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  /* transition: box-shadow 0.3s ease-in-out; */
+}
+
+.album_cover_expand{
+  float:left;
+  width: 21%;
+  margin:1.6vw;
+  height: 250px;
+  /* outline: 5px solid black; */
+  /* background-color: antiquewhite; */
+  border-radius: 15 px;
+  transition: 1s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.50);
+  /* transition: box-shadow 0.3s ease-in-out; */
 }
 
 .album_cover:hover {
-  background-color: gray;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  -webkit-transform: scale(1.25, 1.25);
+  transform: scale(1.25, 1.25);
+}
+
+.album_cover_expand:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  -webkit-transform: scale(1.25, 1.25);
+  transform: scale(1.25, 1.25);
 }
 
 .track_list_item{
@@ -91,4 +116,29 @@ code {
 
 .comment-box{
   background-color: rgb(245, 242, 239);
+}
+
+.sideaudio audio {
+  filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(12%);
+  width: 200px;
+  height: 25px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  
+}
+
+.openButton {
+  position: absolute;
+  top: 35px;
+  left: 25px;
+  font-size: 36px;
+  margin-left: auto;
+  background-color: black;
+  color: white;
 }

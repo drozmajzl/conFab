@@ -44,6 +44,7 @@ function Comments({ track, user, fetchTracks }) {
             const deletedCommentArray = commentDisplay.filter((c)=> c.id !== deleteComment.id)
             setCommentDisplay([...deletedCommentArray, data])
             })
+            fetchTracks()
         }
 
 
@@ -64,6 +65,7 @@ function handleAddComment(e){
         //   .then((setlist) => setSetlists([...setlists, setlist]))
           setCommentBody("")
           setShowCommentBox(false)
+          fetchTracks()
 }
 
 
@@ -77,13 +79,13 @@ const commentForm = (
 )
 
     const topComments = commentDisplay.filter((c) => c.comment !== "-deleted-")
-    const deletedComments = commentDisplay.filter((c) => c.comment === "-deleted-")
+    const deletedComments = commentDisplay.filter((c) => c.comment === "-deleted-" && c.user_replies.length > 0)
 
     const comments = topComments.map((c)=> 
     <div className="comment-box" key={c.id}>
     <h3>{c.user.username}:</h3>
     <p>{c.comment} {user.id === c.user_id && c.comment !== "-deleted-" ? <span onClick={()=>handleDeleteComment(c)}>🗑</span> : null }</p>
-        <Reply user={user} comment_id={c.id} replies={c.user_replies} addReply={addReply} setAddReply={setAddReply}/>
+        <Reply fetchTracks={fetchTracks} commentDisplay={commentDisplay} user={user} comment_id={c.id} replies={c.user_replies} addReply={addReply} setAddReply={setAddReply}/>
         </div>
         )
 
@@ -91,7 +93,7 @@ const commentForm = (
     <div className="comment-box" key={c.id}>
     <h3>{c.user.username}:</h3>
     <p>{c.comment} {user.id === c.user_id && c.comment !== "-deleted-" ? <span onClick={()=>handleDeleteComment(c)}>🗑</span> : null }</p>
-        <Reply user={user} comment_id={c.id} replies={c.user_replies} addReply={addReply} setAddReply={setAddReply}/>
+        <Reply fetchTracks={fetchTracks} commentDisplay={commentDisplay} user={user} comment_id={c.id} replies={c.user_replies} addReply={addReply} setAddReply={setAddReply}/>
         </div>
         )
 

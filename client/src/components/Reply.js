@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 
-function Reply({ replies, addReply, setAddReply, comment_id, user }){
+function Reply({ replies, addReply, setAddReply, comment_id, user, commentDisplay, fetchTracks }){
     const [currentReplies, setCurrentReplies]=useState([...replies])
     const [showReplyBox, setShowReplyBox]=useState(false)
     const [replyBody, setReplyBody]=useState("")
@@ -19,6 +19,10 @@ function Reply({ replies, addReply, setAddReply, comment_id, user }){
         reply_body: replyBody
     }
 
+    // useEffect(()=>{
+    //     setCurrentReplies([...replies])
+    // },[commentDisplay])
+
     function handleAddReply(e){
         e.preventDefault();
         fetch("/replies", {
@@ -32,6 +36,7 @@ function Reply({ replies, addReply, setAddReply, comment_id, user }){
           .then((r)=>setAddReply(r))
           setReplyBody("")
           setShowReplyBox(false)
+          fetchTracks()
     }
 
     function handleDeleteReply(replyId){
@@ -40,6 +45,7 @@ function Reply({ replies, addReply, setAddReply, comment_id, user }){
             }).then((d)=>console.log(d))
             const deleteReply = currentReplies.filter((r)=> r.id !== replyId)
             setCurrentReplies([...deleteReply])
+            fetchTracks()
     }
     
 

@@ -1,14 +1,15 @@
 import Setlist from './Setlist';
 
-function SetlistShow({ setlists, setSetlists, fetchSetlists, addTrack, setAddTrack }){
+function SetlistShow({ setlists, setSetlists, fetchSetlists, addTrack, setAddTrack, showAudioPlayer, setShowAudioPlayer, playTrack, setPlayTrack }){
     
     const setlistDisplay = setlists&&setlists.map((s)=> 
-        <Setlist key={s.id} setAddTrack={setAddTrack} addTrack={addTrack} fetchSetlists={fetchSetlists} setlist={s} deleteSetlist={deleteSetlist}/>
+        <Setlist key={s.id} playTrack={playTrack} setPlayTrack={setPlayTrack} setAddTrack={setAddTrack} addTrack={addTrack} fetchSetlists={fetchSetlists} setlist={s} deleteSetlist={deleteSetlist} showAudioPlayer={showAudioPlayer} setShowAudioPlayer={setShowAudioPlayer}/>
     )
 
     function deleteSetlist(x){
         const updatedSetlists = setlists.filter((s) => s.id !== x)
         setSetlists(updatedSetlists)
+        setShowAudioPlayer(false)
         handleDeleteSetlist(x)
     }
 

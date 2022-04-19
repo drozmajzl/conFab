@@ -5,6 +5,7 @@ function Login ({ onLogin }){
     const [login, setLogin] = useState(false);
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const [showModal, setShowModal] = useState(false)
 
         // login
     function handleSubmit(e) {
@@ -21,10 +22,12 @@ function Login ({ onLogin }){
           setUserName("")
           setPassword("")
         }
+
+
             
     const loginBox = (
-        <div>
-            <div>
+        <div className="modal_container">
+            <div className="modal">
                 <form onSubmit={handleSubmit}>
                     <div>
                     <div className="mb-3">
@@ -33,7 +36,7 @@ function Login ({ onLogin }){
                          <div className="mb-3">
                          <input type = "text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"></input>
                          </div>
-                            <input type = "submit" className="btn btn-outline-light"></input>
+                            <input type = "submit" className="basic"></input>
                     </div>
                 </form>
              </div>
@@ -44,7 +47,7 @@ function Login ({ onLogin }){
     return(
         <div>
             <nav>
-                <button type="button" className="btn btn-outline-light" onClick={() => setLogin(!login)}>Login</button>
+                <button type="button" className="basic" onClick={() => setLogin(!login)}>Login</button>
                 {login ? loginBox : null}
             </nav>
         </div>

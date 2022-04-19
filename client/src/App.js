@@ -10,7 +10,9 @@ import AlbumShow from './components/AlbumShow';
 import TrackShow from './components/TrackShow';
 import { Route, Switch, useHistory } from "react-router-dom";
 import Sidebar from './components/Sidebar';
+import testbackgroun from './testbackgroun.svg';
 import './App.css';
+
 
 
 function App() {
@@ -18,7 +20,7 @@ function App() {
   const [albums, setAlbums] = useState([])
   const history = useHistory();
   const [setlists, setSetlists] = useState("")
-  const [showSideBar, setShowSidebar]=useState(true)
+  const [showSideBar, setShowSidebar]=useState(false)
   const [addTrack, setAddTrack]=useState("")
   const [tracks, setTracks] = useState([])
 
@@ -84,22 +86,33 @@ function App() {
     .then(()=>handleReroute())
   }
 
-
-    
-  return (
-    <div className="App" style={{marginLeft: (showSideBar ? "250px" : "0px")}}>
-      {false ? null : <button className="openButton" onClick={()=>setShowSidebar(true)}>☰</button>}
-      <NavBar user={user}/>
+  if(!user){
+    return(
+      <div className="App" style={{marginLeft: "0px", backgroundImage: `url(${testbackgroun})`, backgroundRepeat:'repeat-x'}}>
       {user? null : <Signup /> }
       {user ? <Logout handleReroute={handleReroute} handleLogout={handleLogout}/> : <Login onLogin={setUser}/> }
-      <h1>ConFab!</h1>
-      
+      <h1 style={{ marginTop:"20vw"}} className='confab'>ConFab!</h1>
+      </div>
+    )
+  }
+    
+  return (
+    
+    <div className="App" style={{marginLeft: (showSideBar ? "250px" : "75px"), backgroundImage: `url(${testbackgroun})`, backgroundRepeat:'repeat-x'}}>
+      {/* {false ? null : <button className="openButton" onClick={()=>setShowSidebar(true)}>☰</button>} */}
+      <div className="nav-div">
+      <NavBar user={user}/>
+      <Logout handleReroute={handleReroute} handleLogout={handleLogout}/>
+      </div>
+      {user? null : <Signup />}
+      {user ? null: <Login onLogin={setUser}/>}
       {user && setlists ? <Sidebar setShowSidebar={setShowSidebar} setAddTrack={setAddTrack} addTrack={addTrack} fetchSetlists={fetchSetlists} showSideBar={showSideBar} setlists={setlists} setSetlists={setSetlists} user={user}/> : null }
       <Switch>
       <Route exact path="/">
           <div>
-            <h1>HOME PAGE</h1>
+            <h1 className='confab'>ConFab!</h1>
             {user ? `Hello, ${user.name}! You are logged in` : null}
+            <img id="beatles-logo" style={{width: "40vw"}} src={require(`./assets/Album Covers/beatleslogo.png`).default}></img>
           </div>
         </Route>
         <Route exact path="/myProfile">

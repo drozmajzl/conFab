@@ -5,9 +5,14 @@ import AlbumsList from './AlbumsList';
 function Albums({ albums, setlists, addTrack, setAddTrack, showSideBar }){
     // const match = useRouteMatch();
 
+    
+
 
     return(
         <div>
+            <br></br>
+            <br></br>
+            <br></br>
         <AlbumsList showSideBar={showSideBar} addTrack={addTrack} setAddTrack={setAddTrack} setlists={setlists} albums={albums}/>
 
         {/* <Route exact path={match.url}>

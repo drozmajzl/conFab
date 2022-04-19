@@ -1,6 +1,8 @@
 
 import {useState} from 'react';
 import Reply from './Reply';
+import  { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 function Comments({ track, user, fetchTracks }) {
     const [commentBody, setCommentBody]=useState("")
@@ -83,7 +85,7 @@ const commentForm = (
 
     const comments = topComments.map((c)=> 
     <div className="comment-box" key={c.id}>
-    <h3>{c.user.username}:</h3>
+    <h3><FontAwesomeIcon icon={faUser}></FontAwesomeIcon> {c.user.username}:</h3>
     <p>{c.comment} {user.id === c.user_id && c.comment !== "-deleted-" ? <span onClick={()=>handleDeleteComment(c)}>🗑</span> : null }</p>
         <Reply fetchTracks={fetchTracks} commentDisplay={commentDisplay} user={user} comment_id={c.id} replies={c.user_replies} addReply={addReply} setAddReply={setAddReply}/>
         </div>
@@ -91,7 +93,7 @@ const commentForm = (
 
     const hiddenComments = deletedComments.map((c)=> 
     <div className="comment-box" key={c.id}>
-    <h3>{c.user.username}:</h3>
+    <h3><FontAwesomeIcon icon={faUser}></FontAwesomeIcon> {c.user.username}:</h3>
     <p>{c.comment} {user.id === c.user_id && c.comment !== "-deleted-" ? <span onClick={()=>handleDeleteComment(c)}>🗑</span> : null }</p>
         <Reply fetchTracks={fetchTracks} commentDisplay={commentDisplay} user={user} comment_id={c.id} replies={c.user_replies} addReply={addReply} setAddReply={setAddReply}/>
         </div>

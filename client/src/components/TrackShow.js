@@ -2,6 +2,8 @@ import {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import Comments from './Comments';
 import AudioPlayer from './AudioPlayer';
+import  { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSquarePlus, faMusic, faX } from "@fortawesome/free-solid-svg-icons";
 
 function TrackShow( {user, setlists, setSetlists, setAddTrack, albums, tracks, setTracks, showSideBar }){
     const params = useParams();
@@ -40,7 +42,7 @@ function TrackShow( {user, setlists, setSetlists, setAddTrack, albums, tracks, s
       
       // const currentTrack = tracks[params.trackId - 1]
 
-      const setListButtons = setlists&&setlists.map((s)=> <button key={s.id} onClick={()=>addToSetlist(s.id)}>{s.name}</button>)
+      const setListButtons = setlists.map((s)=> <p className="setlist-button" key={s.id} onClick={()=>addToSetlist(s.id)}>{s.name}</p>)
 
       const substrings = currentTrack&&currentTrack.lyrics.split('<br> '); 
 
@@ -57,25 +59,34 @@ function TrackShow( {user, setlists, setSetlists, setAddTrack, albums, tracks, s
             {setListButtons.length === 0 ? "No Setlists Yet! Create a new Setlist to add songs." : null}
             {setListButtons}
             <br></br>
-            <button onClick={()=>setShowModal(!showModal)}>Close</button>
+            <FontAwesomeIcon className="modal-close-button" icon={faX}onClick={()=>setShowModal(!showModal)}></FontAwesomeIcon>
         </div>
         </div>
 
     return(
         <div>
-        <div className="song_card">
-            {showModal ? modal : null}
+          <div className="detail-card">
             <h2>{currentTrack.name}</h2>
-            <p>Album:</p>
             <p>Composer: {currentTrack.composer}</p>
             <p>Date Recorded: {currentTrack.record_date}</p>
+            <FontAwesomeIcon className="addToPlaylistTrackList" icon={faSquarePlus} onClick={()=>setShowModal(!showModal)}></FontAwesomeIcon>
+            </div>
+           <div className='trackShowDiv' style={{marginBottom:"55px", marginTop:"80px"}}>
+        <div className="song_card">
+            {showModal ? modal : null}
+            
             {/* <p>Lyrics: {currentTrack.lyrics}</p> */}
+            <div className="lyrics-div">
             {formattedLyrics}
+            </div>
             {/* {showModal && currentTrack.audio_track !== "none" ? null : <audio controls src={require(`../assets/${currentTrack.audio_track}.mp3`).default}></audio>} */}
-            {showModal && currentTrack.audio_track !== "none" ? null : <AudioPlayer audioTrack={currentTrack.audio_track}/>}
-            <button onClick={()=>setShowModal(!showModal)}>Add to Setlist</button>
+            
         </div>
+          <div className="comment-div">
             {currentTrack ? <Comments fetchTracks={fetchTracks} user={user} track={currentTrack}/> : null}
+            </div>
+            </div>
+            {showModal && currentTrack.audio_track !== "none" ? null : <div id="trackShowAudio" style={{marginLeft: (showSideBar ? "115px" : "20px")}}><AudioPlayer audioTrack={currentTrack.audio_track}/></div>}
         </div>
         )
     }

@@ -1,10 +1,20 @@
+
+
 body {
   margin: 0;
+  height:min-content;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: "./testbackgroun.svg";
+  /* background-size: auto auto; */
+}
+
+
+.confab{
+  font-size: 100px;
 }
 
 code {
@@ -52,24 +62,6 @@ code {
   transform: scale(1.25, 1.25);
 }
 
-.track_list_item{
-  outline: 2px solid black;
-}
-
-.track_list_item:hover {
-  background-color: gray;
-}
-
-.song_card{
-  outline: 2px solid black;
-
-}
-
-.comment_card{
-  outline: 2px solid black;
-
-}
-
 .modal_container{
   display: flex;
   align-items: center;
@@ -89,26 +81,6 @@ code {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-#setlist_container{
-  color:white;
-  height: 100%; /* 100% Full-height */
-  width: 250px; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
-  top: 0;
-  left: 0;
-  background-color: #111; /* Black*/
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  transition: 1s;
-}
-
-.track_display {
-    width: 100%;
-    white-space: nowrap;
-    overflow-x: auto;
-}
-
 .track_display > * {
     display: inline-block;
     width:auto
@@ -118,27 +90,399 @@ code {
   background-color: rgb(245, 242, 239);
 }
 
-.sideaudio audio {
-  filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(12%);
-  width: 200px;
-  height: 25px;
+
+::-webkit-media-controls-enclosure {
+  border-radius: 5px;
+  background-color:  rgb(113, 113, 157);
 }
 
+/* .sideaudio{
+  bottom: 0;
+} */
+
+#trackShowAudio{
+  /* position: fixed; */
+  position: fixed;
+  /* -webkit-transform: translateZ(0); */
+  position: fixed;
+  -webkit-transform: translateZ(0);
+  bottom: 0;
+  /* margin-left:26vw; */
+  background-color: rgb(113, 113, 157);
+  opacity: 0.9;
+  left:0;
+  width: 100vw;
+  transition: 1s;
+}
+
+.addPlaylistButton:hover{
+  cursor: pointer;
+}
+
+.playButton:hover{
+  cursor:pointer;
+}
+
+.deleteSongButton:hover{
+  cursor:pointer;
+}
+
+.playButton{
+}
+.deleteSongButton{
+  display:inline-block;
+ 
+  float:none;
+}
+
+.deleteSetlistButton:hover{
+  cursor:pointer;
+}
+
+.deleteSetlistButton{
+  justify-items:end;
+  padding:10px;
+}
+
+.setlist-track:hover{
+  cursor:pointer;
+}
+
+.setlistTitle:hover{
+  cursor:pointer;
+}
+
+/* TODO SIDEBAR */
+
+/* SETLIST FORM DIV */
+.setlist-form{
+
+}
+
+#setlist_container {
+  color:white;
+  height: 100%; /* 100% Full-height */
+  /* width: 250px;  */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  overflow-y:hidden;
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 1s;
+}
+
+/* Open/Close Button */
 .closeButton {
   position: absolute;
   top: 0;
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+}
+
+.closeButton:hover{
+  cursor:pointer;
+}
+
+#new-setlist{
+
+}
+
+/* SideBar Audio */
+.sideaudio audio {
+  /* filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(12%); */
+  width: 200px;
+  /* height: 25px; */
+}
+
+.setlist-box{
+  border-top: 1px solid black;
+  background-color: rgb(35, 35, 35);
+  display: block;
+  transition: 1s;
+  overflow: hidden;
+  text-align:left;
+  padding-left:10px;
+ 
+}
+
+.setlist-box:hover{
+  background-color: rgb(68, 67, 67);
+}
+
+/* SETLILST TRACKS */
+.track_display {
+  width: 100%;
+  white-space: nowrap;
+  overflow-x: auto;
+  border-top: 1px solid rgb(35, 35, 35);
+  background: rgb(53, 53, 53);  
+  display: block;
+  transition: 1s;
+  overflow: hidden;
+  padding-left:10px;
+}
+
+.setlist-track{
+
+}
+
+.setlist-track:hover{
+  font-style: oblique;
+}
+
+.sidebarAudioDiv{
+  /* position: absolute; */
+  position: fixed;
+  bottom: 0;
+  background-color: rgb(113, 113, 157);
+  width: 250px;
+}
+
+.sideBarContentsVisible{
+  display: block;
+  opacity: 100;
+  transition: opacity 2s;
+}
+
+.sideBarContentsInvisible{
+  visibility: none;
+  opacity: 0;
+  display: block;
+  transition: opacity .5s;
+  pointer-events: none;
+}
+
+/* padding: 8px 8px 8px 32px;
+display: block;
+transition: 0.3s; */
+
+/* TODO Track List */
+
+.track-list-div{
+  width: 40vw;
+  border-radius: 5px;
+  background: rgb(244, 242, 242);
+  box-shadow:
+  2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+  6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+  41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+  100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+white-space: nowrap;
+margin-left:35vw;
+margin-right:auto;
+
+}
+
+.track_list_item{
+  background: white;
+  white-space: nowrap;
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
+  justify-items:start;
+  text-align: left;
   
 }
 
-.openButton {
-  position: absolute;
-  top: 35px;
-  left: 25px;
-  font-size: 36px;
-  margin-left: auto;
-  background-color: black;
-  color: white;
+.track_list_item:hover {
+  background-color: rgb(206, 206, 206);
 }
+
+.addToPlaylistTrackList{
+  white-space: nowrap;
+  /* display: inline; */
+  padding-left:10px
+}
+
+.addToPlaylistTrackList:hover{
+  cursor:pointer;
+  color:gray;
+}
+
+.trackListName{
+  white-space: nowrap;
+  display: inline-block;
+  padding-left:10px;
+  
+}
+#beatles-logo{
+  display:flex;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.nav-div{
+ display:flex;
+ float: right;
+font-size:40px;
+}
+
+.div-icon{
+  color:black;
+}
+
+.div-icon:hover{
+  color:white;
+  cursor:pointer;
+}
+
+.song_card{
+  background-color: white;
+  width: 600px;
+  display:flex;
+  margin-left:auto;
+  margin-right: auto;
+  padding:10px;
+  border-radius: 5px;
+  border:1px solid black;
+  box-shadow:
+  2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+  6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+  41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+  100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+}
+
+.detail-card{
+  padding:10px;
+  background-color: white;
+  max-width: 30vw;
+  /* display: inline; */
+  border-radius: 5px;
+  margin-top:15vh;
+  margin-left: auto;
+  margin-right:auto;
+  border:1px solid black;
+  box-shadow:
+  2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+  6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+  41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+  100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+}
+
+.lyrics-div{
+  /* display: inline-block; */
+  display:flexbox;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.comment-div{
+
+}
+
+.comment_card{
+  border:1px solid black;
+  border-radius: 5px;
+
+  box-shadow:
+  2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+  6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+  41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+  100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+padding:10px;
+}
+
+.track-list{
+  /* margin-top:150px; */
+  border-radius: 5px;
+  margin-left:20px;
+}
+
+.tracklist-title{
+  margin-top: 150px;
+}
+
+#album-show-cover{
+  display:flex;
+  margin-left:10vw;
+  margin-right:auto;
+
+}
+
+/* BUTTON */
+
+.basic {
+  width: 140px;
+  height: 45px;
+  font-size: 23px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: black;
+  font-weight: 700;
+  position: relative;
+  transition: all 0.5s;
+  z-index: 1;
+ }
+ 
+ .basic::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background-color: black;
+  z-index: -1;
+  transition: all 0.5s;
+ }
+ 
+ .basic:hover::before {
+  width: 100%;
+ }
+ 
+ .basic:hover {
+  color: white;
+ }
+ 
+ .basic:active:before {
+  background: #b9b9b9;
+ }
+
+ .setlist-button{
+   display:inline;
+   padding-left:10px;
+   padding-right:10px;
+   background-color: black;
+   color:white;
+   border-radius: 5px;
+   margin-left:10px;
+ }
+
+ .setlist-button:hover{
+   background-color: rgb(207, 207, 207);
+   color:black;
+   cursor:pointer;
+ }
+
+ .modal-close-button{
+   padding: 10px;
+   cursor:pointer;
+ }
+
+ .profile-card{
+   border: 1px solid black;
+   width: 30vw;
+   margin-top: 90px;
+   padding: 20px;
+   border-radius: 5px;
+   margin-left:auto;
+   margin-right:auto;
+   background-color:white;
+ }

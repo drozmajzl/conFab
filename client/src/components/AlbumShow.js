@@ -10,10 +10,12 @@ function AlbumShow( { albums, setAlbums, setlists, setSetlists, fetchSetlists, a
         if(albums.length > 0){
     return(
         <div>
-            <h3>{currentAlbum.name}</h3>
+            <h1 className="tracklist-title">{currentAlbum.name}</h1>
+            <img id="album-show-cover" className={showSideBar ? "album_cover_expand" : "album_cover"} style={{width: "20vw", height: "20vw"}} src={require(`../assets/${currentAlbum.album_cover}.jpeg`).default}></img>
             {/* <h3>Albums Show Component!</h3> */}
-            <h3>Tracks:</h3>
+            <div className="track-list-div">
             <TrackList showSideBar={showSideBar} addTrack={addTrack} setAddTrack={setAddTrack} fetchSetlists={fetchSetlists} setlists={setlists} setSetlists={setSetlists} tracks={currentAlbum.tracks}/>
+            </div>
         </div>
     )
         }

@@ -1,5 +1,7 @@
 import {React, useState } from "react";
 import { NavLink } from "react-router-dom";
+import  { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSquarePlus, faMusic, faX } from "@fortawesome/free-solid-svg-icons";
 
 function TrackList({ tracks, setlists, setSetlists, fetchSetlists, addTrack, setAddTrack, showSideBar }){
     const [showModal, setShowModal] = useState(false)
@@ -38,17 +40,20 @@ function TrackList({ tracks, setlists, setSetlists, fetchSetlists, addTrack, set
 
     const displayTracks = tracks.map((t) => 
         <div key={t.id}>
-            <NavLink to={`tracks/${t.id}`}
-            exact>
+            
                 <div className="track_list_item" key={t.id}>
-                <p>{t.name}</p>
+                <NavLink 
+            style={{ textDecoration: 'none', color: "inherit" }}
+            to={`tracks/${t.id}`}
+            exact>
+                <p className="trackListName"><FontAwesomeIcon icon={faMusic}></FontAwesomeIcon> {t.name}</p>
+                </NavLink>  
+                <FontAwesomeIcon className="addToPlaylistTrackList" icon={faSquarePlus} onClick={()=>ModalDisplay(t)}></FontAwesomeIcon>
                 </div>
-            </NavLink>  
-            <button onClick={()=>ModalDisplay(t)}>+</button>
         </div>
         )
 
-        const setListButtons = setlists.map((s)=> <button key={s.id} onClick={()=>addToSetlist(s.id)}>{s.name}</button>)
+        const setListButtons = setlists.map((s)=> <p className="setlist-button" key={s.id} onClick={()=>addToSetlist(s.id)}>{s.name}</p>)
 
         const modal = <div style={{marginLeft: (showSideBar ? "125px" : "0px")}} className="modal_container">
         <div className="modal">
@@ -56,12 +61,12 @@ function TrackList({ tracks, setlists, setSetlists, fetchSetlists, addTrack, set
             {setListButtons.length === 0 ? "No Setlists Yet! Create a new Setlist to add songs." : null}
             {setListButtons}
             <br></br>
-            <button onClick={()=>setShowModal(!showModal)}>Close</button>
+            <FontAwesomeIcon className="modal-close-button" icon={faX}onClick={()=>setShowModal(!showModal)}></FontAwesomeIcon>
         </div>
         </div>
 
     return(
-        <div>
+        <div className="track-list">
             {displayTracks}
             {showModal ? modal : null}
         </div>

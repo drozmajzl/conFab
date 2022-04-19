@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import  { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 function Profile({ user, deleteProfile, setUser }){
     const [deleteButton, setDeleteButton] = useState(true)
@@ -88,20 +90,21 @@ function Profile({ user, deleteProfile, setUser }){
             
 
     return(
-        <div>
+        <div className="profile-card">
             <h1>My Profile</h1>
+            <FontAwesomeIcon style={{fontSize:"80px"}} icon={faUser}></FontAwesomeIcon>
             {user && !edit ?
             <div>
-            <h4 className="list-group-item">Username: {user.username}</h4>
-            <h4 className="list-group-item">Name: {user.name}</h4>
-            <h4 className="list-group-item">Age: {user.age}</h4>
-            <h4 className="list-group-item">Email: {user.email}</h4>
+            <h2 className="list-group-item">Username: {user.username}</h2>
+            <h2 className="list-group-item">Name: {user.name}</h2>
+            <h2 className="list-group-item">Age: {user.age}</h2>
+            <h2 className="list-group-item">Email: {user.email}</h2>
             </div> : null }
             
-            { deleteButton ? null : <button type="button" className="btn btn-outline-danger" style={{width: "10rem"}} onClick={()=>deleteProfile()}> Confirm Delete Profile? </button>}
-            { deleteButton? <button className="btn btn-outline-secondary" style={{width: "10rem"}}onClick={()=>setDeleteButton(false)}>Delete Profile</button> : null }
+            { deleteButton ? null : <button type="button" className="basic" style={{width: "10rem"}} onClick={()=>deleteProfile()}> Confirm? </button>}
+            { deleteButton && !edit ? <button className="basic" style={{width: "10rem"}}onClick={()=>setDeleteButton(false)}>Delete Profile</button> : null }
             {edit ? editBox : null}
-            <button className="btn btn-outline-secondary" onClick={()=>refreshFetch()}>{edit ? "Cancel Edit" : "Edit Profile"}</button>
+            <button className="basic" onClick={()=>refreshFetch()}>{edit ? "Cancel Edit" : "Edit Profile"}</button>
         </div>
     )
 }

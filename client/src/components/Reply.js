@@ -1,4 +1,6 @@
 import {useState, useEffect} from 'react'
+import  { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 function Reply({ replies, addReply, setAddReply, comment_id, user, commentDisplay, fetchTracks }){
     const [currentReplies, setCurrentReplies]=useState([...replies])
@@ -7,8 +9,13 @@ function Reply({ replies, addReply, setAddReply, comment_id, user, commentDispla
     const [showReplies, setShowReplies]=useState(false)
 
     useEffect(()=>{
+        setCurrentReplies([...replies])
+    }, [commentDisplay])
+
+    useEffect(()=>{
         if (addReply !== "" && addReply.comment_id === comment_id){
             setCurrentReplies([...currentReplies, addReply])
+            setAddReply("")
         }
     }, [addReply])
 
@@ -51,7 +58,7 @@ function Reply({ replies, addReply, setAddReply, comment_id, user, commentDispla
 
     const replyDisplay = currentReplies.map((r)=>
         <div key={r.id}>
-          <h4>{r.user.name}</h4>
+          <h4><FontAwesomeIcon icon={faUser}></FontAwesomeIcon> {r.user.name}</h4>
         <p key={r.id}>{r.reply_body} {user.id === r.user.id ? <span onClick={()=>handleDeleteReply(r.id)}>🗑</span> : null }</p>
         </div>
     )

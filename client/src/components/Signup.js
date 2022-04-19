@@ -52,7 +52,8 @@ function Signup({ login }) {
     }
 
     const signupBox = (
-      <div>
+      <div className="modal_container">
+        <div className="modal">
           <form onSubmit={handleSignup}>
             <div className="mb-3">
               <input type ="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="username"/>
@@ -73,17 +74,18 @@ function Signup({ login }) {
               <input type ="text"  value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email"/>
               </div>
               <div className="mb-3">
-              <input type = "submit" className="btn btn-outline-light"></input>
+              <input type = "submit" className="basic"></input>
               </div>
            
           </form>
+          </div>
       </div>
     )
     
 return (
   <div>
       <nav>
-          <button type="button" className="btn btn-outline-light" onClick ={() => setSignup(!signup)}>Signup</button>
+          <button type="button" className="basic" onClick ={() => setSignup(!signup)}>Signup</button>
           {signup ? signupBox : null}
       </nav>
   </div>

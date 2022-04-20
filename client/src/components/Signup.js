@@ -53,7 +53,7 @@ function Signup({ login }) {
 
     const signupBox = (
       <div className="modal_container">
-        <div className="modal">
+        <div className="modal2">
           <form onSubmit={handleSignup}>
             <div className="mb-3">
               <input type ="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="username"/>

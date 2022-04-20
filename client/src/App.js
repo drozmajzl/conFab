@@ -92,6 +92,7 @@ function App() {
       {user? null : <Signup /> }
       {user ? <Logout handleReroute={handleReroute} handleLogout={handleLogout}/> : <Login onLogin={setUser}/> }
       <h1 style={{ marginTop:"20vw"}} className='confab'>ConFab!</h1>
+      <p>Discuss and learn the music of The Beatles!</p>
       </div>
     )
   }
@@ -111,7 +112,7 @@ function App() {
       <Route exact path="/">
           <div>
             <h1 className='confab'>ConFab!</h1>
-            {user ? `Hello, ${user.name}! You are logged in` : null}
+            {/* {user ?<h1> Welcome, {user.name}!</h1> : null} */}
             <img id="beatles-logo" style={{width: "40vw"}} src={require(`./assets/Album Covers/beatleslogo.png`).default}></img>
           </div>
         </Route>

@@ -67,22 +67,22 @@ function Profile({ user, deleteProfile, setUser }){
     const editBox = (
             <form onSubmit={(e)=>handleEdit(e)}>
               <div className="mb-3">
-                <label>Username</label>
+                <label className="label">Username</label>
                 <br></br>
                 <input type ="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="username"/>
                 </div>
                 <div className="mb-3">
-                <label>Name</label>
+                <label className="label">Name</label>
                 <br></br>
                 <input type ="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="name"/>
                 </div>
                 <div className="mb-3">
-                <label>Age</label>
+                <label className="label">Age</label>
                 <br></br>
                 <input type ="text" value={age} onChange={(e) => setAge(e.target.value)} placeholder="age"/>
                 </div>
                 <div className="mb-3">
-                <input type = "submit" className="btn btn-outline-light"></input>
+                <button className="basic" type = "submit">Submit</button>
                 </div>
                 </form>
                 )
@@ -91,7 +91,7 @@ function Profile({ user, deleteProfile, setUser }){
 
     return(
         <div className="profile-card">
-            <h1>My Profile</h1>
+            <h1 className="track-show-title">My Profile</h1>
             <FontAwesomeIcon style={{fontSize:"80px"}} icon={faUser}></FontAwesomeIcon>
             {user && !edit ?
             <div>

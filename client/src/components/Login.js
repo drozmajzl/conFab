@@ -27,7 +27,7 @@ function Login ({ onLogin }){
             
     const loginBox = (
         <div className="modal_container">
-            <div className="modal">
+            <div className="modal2">
                 <form onSubmit={handleSubmit}>
                     <div>
                     <div className="mb-3">

@@ -66,17 +66,18 @@ function TrackShow( {user, setlists, setSetlists, setAddTrack, albums, tracks, s
     return(
         <div>
           <div className="detail-card">
-            <h2>{currentTrack.name}</h2>
+            <h1 className="track-show-title">{currentTrack.name}</h1>
             <p>Composer: {currentTrack.composer}</p>
             <p>Date Recorded: {currentTrack.record_date}</p>
             <FontAwesomeIcon className="addToPlaylistTrackList" icon={faSquarePlus} onClick={()=>setShowModal(!showModal)}></FontAwesomeIcon>
             </div>
-           <div className='trackShowDiv' style={{marginBottom:"55px", marginTop:"80px"}}>
+           <div className='trackShowDiv' style={{marginBottom:"55px", marginTop:"20px"}}>
         <div className="song_card">
             {showModal ? modal : null}
             
             {/* <p>Lyrics: {currentTrack.lyrics}</p> */}
             <div className="lyrics-div">
+              <h2 className="lyrics-header">Lyrics</h2>
             {formattedLyrics}
             </div>
             {/* {showModal && currentTrack.audio_track !== "none" ? null : <audio controls src={require(`../assets/${currentTrack.audio_track}.mp3`).default}></audio>} */}

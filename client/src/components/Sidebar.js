@@ -3,7 +3,7 @@ import SetlistShow from './SetlistShow'
 import AudioPlayer from './AudioPlayer'
 import  { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
-import { faSquareMinus } from "@fortawesome/free-solid-svg-icons";
+import { faSquareMinus, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 
 function Sidebar({ user, setlists, setSetlists, showSideBar, fetchSetlists, addTrack, setAddTrack, setShowSidebar }){
@@ -37,7 +37,7 @@ function Sidebar({ user, setlists, setSetlists, showSideBar, fetchSetlists, addT
         <div className="setlist-form">
             <form onSubmit={handleSubmit}>
                 <input type = "text" value={formName} onChange={(e) => setFormName(e.target.value)} placeholder="New Setlist Name"></input>
-                <input type = "submit"></input>
+                <input className="button-28" type = "submit"></input>
             </form>
         </div>
     )

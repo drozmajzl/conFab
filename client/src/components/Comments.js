@@ -2,7 +2,7 @@
 import {useState} from 'react';
 import Reply from './Reply';
 import  { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faComment, faTrashCan, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 function Comments({ track, user, fetchTracks }) {
     const [commentBody, setCommentBody]=useState("")
@@ -75,7 +75,7 @@ const commentForm = (
     <div>
         <form onSubmit={handleAddComment}>
             <input type = "text" value={commentBody} onChange={(e) => setCommentBody(e.target.value)} placeholder="Comment Here"></input>
-            <input type = "submit"></input>
+            <input className="button-28" type = "submit"></input>
         </form>
     </div>
 )
@@ -85,16 +85,16 @@ const commentForm = (
 
     const comments = topComments.map((c)=> 
     <div className="comment-box" key={c.id}>
-    <h3><FontAwesomeIcon icon={faUser}></FontAwesomeIcon> {c.user.username}:</h3>
-    <p>{c.comment} {user.id === c.user_id && c.comment !== "-deleted-" ? <span onClick={()=>handleDeleteComment(c)}>🗑</span> : null }</p>
+    <h3 className="comment-user"><FontAwesomeIcon icon={faUser}></FontAwesomeIcon> {c.user.username}:</h3>
+    <p className="comment-body">{c.comment} {user.id === c.user_id && c.comment !== "-deleted-" ? <FontAwesomeIcon className="delete-comment-icon" icon={faTrashCan} onClick={()=>handleDeleteComment(c)}></FontAwesomeIcon>: null }</p>
         <Reply fetchTracks={fetchTracks} commentDisplay={commentDisplay} user={user} comment_id={c.id} replies={c.user_replies} addReply={addReply} setAddReply={setAddReply}/>
         </div>
         )
 
     const hiddenComments = deletedComments.map((c)=> 
     <div className="comment-box" key={c.id}>
-    <h3><FontAwesomeIcon icon={faUser}></FontAwesomeIcon> {c.user.username}:</h3>
-    <p>{c.comment} {user.id === c.user_id && c.comment !== "-deleted-" ? <span onClick={()=>handleDeleteComment(c)}>🗑</span> : null }</p>
+    <h3 className="comment-user"><FontAwesomeIcon icon={faUser}></FontAwesomeIcon> {c.user.username}:</h3>
+    <p className="comment-body">{c.comment} {user.id === c.user_id && c.comment !== "-deleted-" ? <span onClick={()=>handleDeleteComment(c)}>🗑</span> : null }</p>
         <Reply fetchTracks={fetchTracks} commentDisplay={commentDisplay} user={user} comment_id={c.id} replies={c.user_replies} addReply={addReply} setAddReply={setAddReply}/>
         </div>
         )
@@ -102,11 +102,16 @@ const commentForm = (
     return(
         <div className="comment_card">
                 <h3>Comments:</h3>
-                <button onClick={()=>setShowCommentBox(!showCommentBox)}>Add Comment</button>
+                <FontAwesomeIcon className="comment-icon" icon={faComment} onClick={()=>setShowCommentBox(!showCommentBox)}></FontAwesomeIcon>
+                <br></br>
                 {showCommentBox ? commentForm : null}
+                <div className="comment-tree">
                 {commentDisplay.length > 0 ? comments : "no comments yet!"}
-                {hiddenComments.length > 0 ? <p onClick={()=>setShowHiddenComments(!showHiddenComments)}>Deleted Comments</p> : null}
+                </div>
+                {hiddenComments.length > 0 ? <p className="see-replies" onClick={()=>setShowHiddenComments(!showHiddenComments)}>Deleted Comments({hiddenComments.length})</p> : null}
+                <div className="comment-tree">
                 {showHiddenComments ? hiddenComments : null}
+                </div>
             </div>
     )
 }

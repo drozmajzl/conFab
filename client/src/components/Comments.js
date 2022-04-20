@@ -2,16 +2,13 @@
 import {useState} from 'react';
 import Reply from './Reply';
 import  { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faComment, faTrashCan, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faComment, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 function Comments({ track, user, fetchTracks }) {
     const [commentBody, setCommentBody]=useState("")
     const [showCommentBox, setShowCommentBox]=useState(false)
     const [commentDisplay, setCommentDisplay]=useState([...track.comments])
     const [showHiddenComments, setShowHiddenComments]=useState(false)
-    
-    
-    const [currentCommentId, setCurrentcommentId]=useState('')
     const [addReply, setAddReply]=useState("")
 
     const newComment = {   

@@ -1,9 +1,9 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import {useParams} from 'react-router-dom';
 import Comments from './Comments';
 import AudioPlayer from './AudioPlayer';
 import  { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSquarePlus, faMusic, faX } from "@fortawesome/free-solid-svg-icons";
+import { faSquarePlus, faX } from "@fortawesome/free-solid-svg-icons";
 
 function TrackShow( {user, setlists, setSetlists, setAddTrack, albums, tracks, setTracks, showSideBar }){
     const params = useParams();

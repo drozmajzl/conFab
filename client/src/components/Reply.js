@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import  { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faReply, faTrashCan, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faReply, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 function Reply({ replies, addReply, setAddReply, comment_id, user, commentDisplay, fetchTracks }){
     const [currentReplies, setCurrentReplies]=useState([...replies])

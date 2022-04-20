@@ -12,7 +12,7 @@ function AlbumsList({ albums, setlists, addTrack, setAddTrack, showSideBar }){
             exact>
             {/* <div className="album_cover"> */}
                 {/* <h3>{albums[albumID].name}</h3> */}
-                <img className={showSideBar ? "album_cover_expand" : "album_cover"} style={{width: "20vw", height: "20vw"}} src={require(`../assets/${albums[albumID].album_cover}.jpeg`).default}></img>
+                <img alt="Album Cover" className={showSideBar ? "album_cover_expand" : "album_cover"} style={{width: "20vw", height: "20vw"}} src={require(`../assets/${albums[albumID].album_cover}.jpeg`).default}></img>
             {/* </div> */}
             </NavLink>
             </div>

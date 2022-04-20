@@ -13,8 +13,6 @@ import Sidebar from './components/Sidebar';
 import testbackgroun from './testbackgroun.svg';
 import './App.css';
 
-
-
 function App() {
   const [user, setUser]=useState("")
   const [albums, setAlbums] = useState([])
@@ -84,6 +82,7 @@ function App() {
       method: "DELETE",
     }).then(() => setUser())
     .then(()=>handleReroute())
+    alert("Profile Deleted")
   }
 
   if(!user){
@@ -113,7 +112,7 @@ function App() {
           <div>
             <h1 className='confab'>ConFab!</h1>
             {/* {user ?<h1> Welcome, {user.name}!</h1> : null} */}
-            <img id="beatles-logo" style={{width: "40vw"}} src={require(`./assets/Album Covers/beatleslogo.png`).default}></img>
+            <img id="beatles-logo" alt="Beatles Logo" style={{width: "40vw"}} src={require(`./assets/Album Covers/beatleslogo.png`).default}></img>
           </div>
         </Route>
         <Route exact path="/myProfile">

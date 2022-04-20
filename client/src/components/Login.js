@@ -5,7 +5,6 @@ function Login ({ onLogin }){
     const [login, setLogin] = useState(false);
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [showModal, setShowModal] = useState(false)
 
         // login
     function handleSubmit(e) {
@@ -18,7 +17,7 @@ function Login ({ onLogin }){
           body: JSON.stringify({ username, password }),
         })
           .then((r) => r.json())
-          .then((user) => (user.username ? onLogin(user) : alert(user.error)))
+          .then((user) => (user.username ? onLogin(user) : alert(user.error.login)))
           setUserName("")
           setPassword("")
         }

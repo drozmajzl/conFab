@@ -3,7 +3,7 @@ import SetlistShow from './SetlistShow'
 import AudioPlayer from './AudioPlayer'
 import  { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
-import { faSquareMinus, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { faSquareMinus } from "@fortawesome/free-solid-svg-icons";
 
 
 function Sidebar({ user, setlists, setSetlists, showSideBar, fetchSetlists, addTrack, setAddTrack, setShowSidebar }){
